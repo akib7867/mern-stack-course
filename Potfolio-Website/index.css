@@ -1,0 +1,45 @@
+body{
+    background-color: rgb(213, 218, 223);
+}
+
+
+.header {
+    background-color: rgb(98, 98, 241);
+    color: rgb(235, 236, 237);
+    text-align: center;
+    padding: 20px;
+}
+
+.nav-bar-list {
+    background-color: rgb(133, 133, 234);
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+ul {
+    display: flex;
+    list-style-type: none;
+}
+
+li{
+    padding: 10px;
+    color: rgb(19, 18, 18);
+}
+
+h2{
+    color: rgb(9, 9, 10);
+}
+
+.main-project-div{
+    display: flex;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 25px;
+}
+.My-Contact{
+    color: rgb(23, 22, 22);
+
+}
+
