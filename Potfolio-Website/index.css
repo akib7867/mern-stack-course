@@ -1,4 +1,7 @@
-body{
+body {
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
     background-color: rgb(213, 218, 223);
 }
 
@@ -22,24 +25,24 @@ ul {
     list-style-type: none;
 }
 
-li{
+li {
     padding: 10px;
     color: rgb(19, 18, 18);
 }
 
-h2{
+h2 {
     color: rgb(9, 9, 10);
 }
 
-.main-project-div{
+.main-project-div {
     display: flex;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     margin: 25px;
 }
-.My-Contact{
+
+.My-Contact {
     color: rgb(23, 22, 22);
 
 }
-
