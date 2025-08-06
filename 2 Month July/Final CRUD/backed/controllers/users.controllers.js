@@ -10,7 +10,7 @@ const createUsers = async (req, res) => {
             name,
             email,
             mobileNO,
-            age
+            age,
         })
 
         await usersData.save()
@@ -25,8 +25,8 @@ const createUsers = async (req, res) => {
 const getAllUsers = async (req, res) => {
     try {
 
-        const allusersData = await users.find()
-        res.status(201).json({ data: allusersData, message: "Get All Users Data" });
+        const allUsersData = await users.find()
+        res.status(201).json({ data: allUsersData, message: "Get All Users Data" });
     } catch (error) {
         console.log(error);
     }
@@ -35,8 +35,11 @@ const getAllUsers = async (req, res) => {
 const deleteUsers = async (req, res) => {
     try {
 
-        const { usersId } = req.body;
-        await users.findByIdAndDelete({ id: usersId })
+        const { usersId } = req.query;
+        console.log(usersId,"usersId")
+
+        const userData = await users.findOneAndDelete({ _id : usersId })
+        console.log(userData, "userData")
         res.status(201).json({ message: "Users Deleted" });
     } catch (error) {
         console.log(error)
@@ -45,7 +48,16 @@ const deleteUsers = async (req, res) => {
 
 const updateUsers = async (req, res) => {
     try {
-res.status(201).json({ message: "We are working on this Api" });
+        const {usersId} = req.query;
+
+        const { name, email, mobileNO, age } = req.body;
+        const updateusers = await users.findByIdAndUpdate(usersId, {
+            name,
+            email,
+            mobileNO,
+            age
+        })
+        res.status(201).json({ data :updateusers, message: "updated Record" });
     } catch (error) {
         console.log(error)
     }
