@@ -111,7 +111,7 @@ const Register = () => {
 
         <div className="Box-2">
           <div className="box-2info">
-            <p className="text-3">Have an Account ?  <br /><span className="loginbtn"><u><b>Log in</b></u> </span></p>
+            <p className="text-3">Have an Account ?  <br /><span className="loginbtn"><Link to="/"><u><b>Log in</b></u></Link> </span></p>
 
           </div>
         </div>

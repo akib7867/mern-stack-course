@@ -5,6 +5,7 @@
 // 5 ./api/posts/userId      ===>GET
 
 const Post = require("../../model/post/post model");
+const User = require("../../model/user/user.model");
 
 
 
@@ -12,7 +13,7 @@ const createPost = async (req, res) => {
     try {
         const { description, location, active } = req.body;
         const userId = req.user.userId;
-       console.log(userId,"userId")
+        console.log(userId, "userId")
         const newPost = new Post({
             description,
             location,
@@ -58,9 +59,41 @@ const getMyPost = async (req, res) => {
     }
 }
 
+const updatePost = async (req, res) => {
+
+    try {
+        const userId = req.user.userId
+        const { description, location, active } = req.body
+
+        const updatePost = await Post.findByIdAndUpdate(userId, {
+            description,
+            location,
+            active
+        },
+            {
+                new: true,
+            })
+
+        res.status(201).json(
+            {
+                massage: "post updated ",
+                updatePost: updatePost
+            },
+             {
+                new: true,
+            }
+
+        )
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
 module.exports = {
     createPost,
     getAllPost,
-    getMyPost
+    getMyPost,
+    updatePost
 }
 

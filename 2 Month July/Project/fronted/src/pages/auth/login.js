@@ -1,53 +1,84 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import loginimg from "./../../Assets/login page img.png"
 import instaimg from "./../../Assets/insta text img.png"
 import logogoogle from "./../../Assets/google logo.png"
+import Button from "react-bootstrap/Button";
 import { Link } from 'react-router-dom'
-import Button from 'react-bootstrap/Button';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const Login = () => {
+
     const [email, setEmail] = useState("")
-    const [password, setpassword] = useState("")
+    const [password, setPassword] = useState("")
 
+    let navigate = useNavigate();
 
-
-
-    const submitlogin = async () => {
+    const submitLogin = async () => {
         try {
-            console.log(email, "email")
-
-            console.log(password, "password")
-
-
-            const apiResponse = await axios.post("http://localhost:9090/api/auth/login", {
-
+            const apiResponse = await axios.post(" http://localhost:9090/api/auth/login", {
 
                 email: email,
                 password: password
             })
 
-            if (apiResponse.Data.tokan) {
-                 localStorage.setItem("userData",apiResponse.Data.tokan)
+            if (apiResponse.data.token) {
+                toast.success("login successfull!")
+                setTimeout(() => {
+                    localStorage.setItem("userToken", apiResponse.data.token);
+                    navigate("/home")
+                }, 1000)
+
+
             }
 
+
         } catch (error) {
-            console.log()
+            console.log(error)
+            const errormassage = error.response.date.massage || "invalid Passward or email"
+
+
+            toast.error = (errormassage)
 
         }
     }
 
+    const checkLoginIsTrue = () => {
+        try {
+            const token = localStorage.getItem("userToken");
+            if (token) {
+                navigate("/home")
+            }
+        } catch (error) {
+            console.log(error)
+
+        }
+    };
+
+    useEffect(() => {
+        checkLoginIsTrue();
+    }, [])
+
+
+
+
     return (
-        <div className="text-1">
+        <div className="login-page">
             <div className="container">
                 <div className="row">
-                    <div className="col-md-6">
-                        <img src={loginimg} alt="" className=" mt-5  login-page" />
+
+
+
+
+                    <div className="col-md-6 ">
+                        <img src={loginimg} alt="" className="w-78" />
                     </div>
 
+
                     <div className="col-md-6 text-center">
-                        <img src={instaimg} alt='' className="instagram-logo mb-5"></img>
+                        <img src={instaimg} alt="" className="Instagram-icon mb-4" />
 
                         <form className="login-form">
                             <div className="form-group">
@@ -64,26 +95,26 @@ const Login = () => {
                                     className="form-control my-2 "
                                     id="exampleInputPassword1"
                                     placeholder="Password"
-                                    onChange={(e) => setpassword(e.target.value)}
-                                />
+                                    onChange={(e) => setPassword(e.target.value)} />
                             </div>
 
 
-                            <Button variant="primary" onClick={submitlogin}>
-                                login
+                            <Button variant="primary" className="btn btn-primary  mt-3 login-btn" onClick={submitLogin}>
+                                Sign Up
                             </Button>
                             <hr />
-                            <div className='text-center'>
-                                <img src={logogoogle} alt="" className="goole-logo" />
+                            <div className="text-center">
+                                <img src={logogoogle} alt="" className=" google-logo" />
 
                             </div>
 
-                            <p className="text-center mt-5">Forgot Password?</p>
-                            <p className="text-center">Don't have an account? <b> <Link to="/register">Sign  up</Link></b> </p>
+                            <p className="text-center mt-5 test">Forgot Possword?</p>
+                            <p className="text-center text1">Don't have an account? <span className="bold"><u> <Link to="/register"><b>Sign up</b></Link></u></span></p>
+
                         </form>
 
+                        <ToastContainer position="top-right" autoClose={2000} />
                     </div>
-
                 </div>
             </div>
         </div>

@@ -27,7 +27,7 @@ const Home = () => {
       const apiResponse = await axios.get(" http://localhost:9090/api/user/getuserprofile",
         {
           headers :{
-            Authorization : Bearer ${token},
+            Authorization :` Bearer ${token}`,
           },
         }
       );
@@ -56,16 +56,17 @@ const handleLogout =()=>{
     <div className="container mt-5">
 
       <div className="row ">
-        <div className="col-md-4 my-4">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLQUXqMrzrmkxd3QpxGL5bzgxELsztrL1AgQ&s"
+        <div className="col-md-4 my-4 "
+>
+          <img 
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBlYJfFRvdZG0LNuiRs6l1PNx1bIfZkqZIsQ&s"
             alt="Profile"
             className="profile-img rounded-circle"
           />
         </div>
 
         <div className="col-md-4 text-center mt-5">
-          <h2 className="mb-3">Saniya Alase</h2>
+          <h2 className="mb-3">{userData?.fullName}</h2>
           <ul className="list-unstyled">
             <li>
               <strong>Username:</strong> {userData?.userName}

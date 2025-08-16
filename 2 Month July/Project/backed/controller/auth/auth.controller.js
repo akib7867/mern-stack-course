@@ -45,7 +45,8 @@ const loginUser = async (req, res) => {
 
 
     } catch (error) {
-        console.log(error)
+        console.log(error,message)
+        res.json({message:error.message})
     }
 
 }
@@ -112,7 +113,7 @@ const verifyOtp = async (req, res) => {
         if (!userData) {
             return res.status(201).json({ message: "User NOt found in db" })
         }
-        
+
         if (Otp !== userData?.resetOtp) {
             return res.status(201).json({ message: "Otp is invalid" })
         }
@@ -158,14 +159,12 @@ const resentpassword = async (req, res) => {
 const changepassword = async (req, res) => {
 
     try {
-        
+
     } catch (error) {
-        
+
     }
 }
-        
 
-   
 
 module.exports = {
     loginUser,
