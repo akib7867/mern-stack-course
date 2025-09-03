@@ -5,62 +5,85 @@ import { useState } from "react";
 import ExampleCustomHook from "./All Hooks/exampleCustomHook";
 import ExampleuseMemo from "./All Hooks/exampleUseMemo";
 import ExampleUseReducer from "./All Hooks/exampleUseReducer";
+import ExampleUseRef from "./All Hooks/exampleUseRef";
 
 
 
 function App() {
-  const [showCustomAkib, setShowCustomAkib] = useState(false);
-  const[showUseMemo , setShowUseMemo] = useState(false)
-  const[showUseReducer , setShowUseReducer] = useState(false)
+  const [showCustomHook, setShowCustomHook] = useState(false);
+  const [showUseMemo, setShowUseMemo] = useState(false)
+  const [showUseReducer, setShowUseReducer] = useState(false)
+  const [showUseref, setshowUseref] = useState(false)
 
 
-  const handleCustomAkib = ()=>{
+  const handleCustomHook = () => {
     try {
       setShowUseReducer(false)
       setShowUseMemo(false)
-      setShowCustomAkib(true)
+      setshowUseref(false)
+      setShowCustomHook(true)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const handleUseMemo = () =>{
+  const handleUseMemo = () => {
     try {
       setShowUseReducer(false)
-      setShowCustomAkib(false)
+      setShowCustomHook(false)
+      setshowUseref(false)
       setShowUseMemo(true)
     } catch (error) {
-       console.log(error)
+      console.log(error)
     }
   }
 
-  const handleUseReducer = () =>{
+  const handleUseReducer = () => {
     try {
-       setShowCustomAkib(false)
+      setShowCustomHook(false)
       setShowUseMemo(false)
+      setshowUseref(false)
       setShowUseReducer(true)
     } catch (error) {
-       console.log(error)
+      console.log(error)
     }
+  }
+
+  const handleuseRef = () => {
+    try {
+      setShowCustomHook(false)
+      setShowUseMemo(false)
+      setShowUseReducer(false)
+      setshowUseref(true)
+    } catch (error) {
+      console.log(error)
+    }
+
+
   }
   return (
     <div className="">
       <div className="container">
         <div className="row ">
-          <div className="col-md-1 mx-2 mt-2">
-            <button className="btn btn-primary" onClick={handleCustomAkib}>customHook</button>
+          <div className="col-md-1 mx-4 mt-2">
+            <button className="btn btn-primary" onClick={handleCustomHook}>customHook</button>
           </div>
-          <div className="col-md-1 mx-2 mt-2">
+          <div className="col-md-1 mx-4 mt-2">
             <button className="btn btn-primary" onClick={handleUseMemo}>useMemo</button>
           </div>
-          <div className="col-md-1 mx-2 mt-2">
+          <div className="col-md-1 mx-4 mt-2">
             <button className="btn btn-primary" onClick={handleUseReducer}>UseReducer</button>
+          </div>
+          <div className="col-md-1 mx-4 mt-2">
+            <button className="btn btn-primary" onClick={ handleuseRef}>useRef</button>
+
           </div>
         </div>
       </div>
-      {showCustomAkib && <ExampleCustomHook/>}
-      {showUseMemo && <ExampleuseMemo/>}
-      {showUseReducer && <ExampleUseReducer/>}
+      {showCustomHook && <ExampleCustomHook />}
+      {showUseMemo && <ExampleuseMemo />}
+      {showUseReducer && <ExampleUseReducer />}
+      {showUseref && <ExampleUseRef/>}
     </div>
   );
 }
