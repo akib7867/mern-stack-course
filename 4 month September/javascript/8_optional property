@@ -1,0 +1,14 @@
+
+// optinal chainging = obj?, property ,subProperty
+
+const mainObject = {
+    name : "Akib",
+    subobject :{
+        std :12
+    },
+    newObject :{
+        city : "karad"
+    }
+}
+
+console.log(mainObject?.subobject?.newObject)
